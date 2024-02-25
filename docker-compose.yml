@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  kafka-consumer:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - kafka
+    environment:
+      SPRING_KAFKA_CONSUMER_GROUP_ID: enseignant-event-group
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    volumes:
+      - ./path/to/your/consumer/application.jar:/app/app.jar
+    command: ["java", "-jar", "/app/app.jar"]
